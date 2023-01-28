@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class WhatsappController {
 
     //Autowire will not work in this case, no need to change this and add autowire
-    WhatsappService whatsappService = new WhatsappService();
+    @Autowired
+    WhatsappService whatsappService;
 
     @PostMapping("/add-user")
     public String createUser(String name, String mobile) throws Exception {
@@ -31,7 +32,7 @@ public class WhatsappController {
     }
 
     @PostMapping("/add-group")
-    public Group createGroup(List<User> users){
+    public Group createGroup(List<User> users) throws Exception{
         // The list contains at least 2 users where the first user is the admin. A group has exactly one admin.
         // If there are only 2 users, the group is a personal chat and the group name should be kept as the name of the second user(other than admin)
         // If there are 2+ users, the name of group should be "Group count". For example, the name of first group would be "Group 1", second would be "Group 2" and so on.
@@ -82,12 +83,12 @@ public class WhatsappController {
         return whatsappService.removeUser(user);
     }
 
-    @GetMapping("/find-messages")
-    public String findMessage(Date start, Date end, int K) throws Exception{
-        //This is a bonus problem and does not contains any marks
-        // Find the Kth latest message between start and end (excluding start and end)
-        // If the number of messages between given time is less than K, throw "K is greater than the number of messages" exception
-
-        return whatsappService.findMessage(start, end, K);
-    }
+//    @GetMapping("/find-messages")
+//    public String findMessage(Date start, Date end, int K) throws Exception{
+//        //This is a bonus problem and does not contains any marks
+//        // Find the Kth latest message between start and end (excluding start and end)
+//        // If the number of messages between given time is less than K, throw "K is greater than the number of messages" exception
+//
+//        return whatsappService.findMessage(start, end, K);
+//    }
 }
