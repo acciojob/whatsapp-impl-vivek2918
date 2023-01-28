@@ -5,6 +5,7 @@ public class Group {
     private int numberOfParticipants;
 
     public Group() {
+
     }
 
     public Group(String name, int numberOfParticipants) {

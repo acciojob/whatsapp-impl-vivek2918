@@ -5,6 +5,7 @@ public class User {
     private String mobile;
 
     public User() {
+
     }
 
     public User(String name, String mobile) {
